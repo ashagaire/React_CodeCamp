@@ -19,6 +19,7 @@
 body{
   margin: 0;
   font-family:Arial, Helvetica, sans-serif;
+  
 }
 
 section{
@@ -36,7 +37,7 @@ section{
 padding: 20px 30px;
 display: flex;
 flex-direction: column;
-/* align-self: center; */
+align-self: center; 
 }
 
 .photo-grid{
@@ -61,7 +62,7 @@ flex-direction: column;
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
-
+  position: relative;
 }
 
 .cards-list {
@@ -88,11 +89,20 @@ flex-direction: column;
   margin-top: auto;
 }
 
-/* ADD */
 .card--title {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.card-badge{
+  position: absolute;
+    top: 6px;
+    left: 6px;
+    background-color: white;
+    padding: 5px 7px;
+    border-radius: 2px;
+    font-weight: bold;
+}   
 
 /* .contacts {
   display: flex;
