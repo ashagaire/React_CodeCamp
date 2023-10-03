@@ -1,18 +1,25 @@
+import { useState } from "react"
 import memesData from  "./memesData"
-export default function Form(){
-   
-    function showImg(){
-        MemeImages = memesArray.map()
+export default function Meme(){
 
-        
-        const memesArray= memesData.data.memes
+    const [meme ,setMeme] = useState({topText : "" , bottomText : "", randomImage: ""  })
+
+
+    
+    const [allMemeImages, setAllMemeImages]= useState(memesData.data.memes)
+
+    function getMemeImage(){
+        const memesArray= allMemeImages
         const randomNumber = Math.floor(Math.random() * memesArray.length)
         const url = memesArray[randomNumber].url
-        console.log(url)
-        // <div className="meme-img">
-        //     <img src={require(memesData.data.memes.url)} />
-        // </div>
+        setMeme(preMeme => ({
+            ...preMeme,
+            randomImage: url
+        }))
+        
     }
+        
+
     
     return(
         <main >
@@ -20,10 +27,10 @@ export default function Form(){
                 
                 <input type="Text" placeholder="top-text" className="form-input" />
                 <input type="Text" placeholder="bottom-text" className="form-input"  />
-                <button className="form-button" onClick={showImg}>Get a new meme image  🖼 </button>
+                <button className="form-button" onClick={getMemeImage}>Get a new meme image  🖼 </button>
                 
             </div>
-            
+            <img src={meme.randomImage} className="meme--image"/>
         </main>
     )
 }
