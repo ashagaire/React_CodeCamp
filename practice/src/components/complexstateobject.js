@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Favorite from "./favorite"
 export default function ComplexStateObject(){
 
     const [contact, setContact] = useState({
@@ -9,8 +10,7 @@ export default function ComplexStateObject(){
         isFavorite: true
     })
    
-    let starIcon = contact.isFavorite ? "star-filled.png" : "star-empty.png"
-
+    
     function toggleFavorite() {
         setContact(preContact => {
             return{
@@ -25,11 +25,8 @@ export default function ComplexStateObject(){
             <article className="card">
                 <img src={require("../images/user.png")} className="card--image" />
                 <div className="card--info">
-                    <img 
-                        src={require(`../images/${starIcon}`)} 
-                        className="card--favorite"
-                        onClick={toggleFavorite}
-                    />
+                    < Favorite isFilled={contact.isFavorite} handelClick={toggleFavorite}/>
+                  
                     <h2 className="card--name">
                         {contact.firstName} {contact.lastName}
                     </h2>
