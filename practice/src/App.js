@@ -1,18 +1,15 @@
 
-import './style-Form.css' ;
+import './style_login_form.css' ;
 
 import { useState } from 'react';
 
 export default function Form() {
   const [formData, setFormData] = useState(
     {
-      firstName: "", 
-      lastName: "", 
       email: "" , 
-      comments :"",
-      isFriendly: true,
-      employment: "",
-      favColor: ""
+      password :"",
+      confirmPassword: "",
+      marketing: false
     }
 )
   
@@ -26,116 +23,65 @@ function handleChange(event) {
         }
     })
 }
-function handleSubmit(event) {
-  event.preventDefault()
-  // /index.html?firstName=asdasd&lastName=asdasd&email=&comments=&isFriendly=on&favColor=red
-  // submitToApi(formData)
-  console.log(formData)
-} 
-return (
-  <form onSubmit={handleSubmit}>
-      <input
-          type="text"
-          placeholder="First Name"
-          onChange={handleChange}
-          name="firstName"
-          value={formData.firstName}
-          className='input-box'
-      />
-      <input
-          type="text"
-          placeholder="Last Name"
-          onChange={handleChange}
-          name="lastName"
-          value={formData.lastName}
-          className='input-box'
-      />
-      <input
-          type="email"
-          placeholder="Email"
-          onChange={handleChange}
-          name="email"
-          value={formData.email}
-          
-      />
-      <textarea
-          placeholder="Comments"
-          onChange={handleChange}
-          name="comments"
-          value={formData.comments}
-          className='input-box'
-      />
-       <input 
-                type="checkbox" 
-                id="isFriendly" 
-                checked={formData.isFriendly}
-                onChange={handleChange}
-                name="isFriendly"
-            />
-        <label htmlFor="isFriendly">Are you friendly?</label>
-            <br />
-            <br />
-            
-            <fieldset>
-                <legend>Current employment status</legend>
-                
-                <input 
-                    type="radio"
-                    id="unemployed"
-                    name="employment"
-                    value="unemployed"
-                    checked={formData.employment === "unemployed"}
-                    onChange={handleChange}
-                />
-                <label htmlFor="unemployed">Unemployed</label>
-                <br />
-                
-                <input 
-                    type="radio"
-                    id="part-time"
-                    name="employment"
-                    value="part-time"
-                    checked={formData.employment === "part-time"}
-                    onChange={handleChange}
-                />
-                <label htmlFor="part-time">Part-time</label>
-                <br />
-                
-                <input 
-                    type="radio"
-                    id="full-time"
-                    name="employment"
-                    value="full-time"
-                    checked={formData.employment === "full-time"}
-                    onChange={handleChange}
-                />
-                <label htmlFor="full-time">Full-time</label>
-                <br />
-                
-            </fieldset>   
-            <br />
-            
-            <label htmlFor="favColor">What is your favorite color?</label>
-            <br />
-            <select 
-                id="favColor"
-                value={formData.favColor}
-                onChange={handleChange}
-                name="favColor"
-            >
-                <option value="">-- Choose --</option>
-                <option value="red">Red</option>
-                <option value="orange">Orange</option>
-                <option value="yellow">Yellow</option>
-                <option value="green">Green</option>
-                <option value="blue">Blue</option>
-                <option value="indigo">Indigo</option>
-                <option value="violet">Violet</option>
-            </select>  
-            <br />
-            <br />
-            <button>Submit</button>
 
-  </form>
+function handleSubmit(event) {
+    event.preventDefault()
+    if(formData.password === formData.confirmPassword) {
+        console.log("Successfully signed up")
+    } else {
+        console.log("Passwords do not match")
+        return
+    }
+    
+    if(formData.marketing) {
+        console.log("Thanks for signing up for our newsletter!")
+    }
+}
+return (
+    <div className="form-container">
+        <form className="form" onSubmit={handleSubmit}>
+            <input 
+                name="email"
+                type="email" 
+                placeholder="Email address"
+                value={formData.email}
+                onChange={handleChange}
+                className="form--input"
+            />
+            <input 
+                name="password"
+                type="password" 
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleChange}
+                className="form--input"
+            />
+            <input 
+                name="confirmPassword"
+                type="password" 
+                placeholder="Confirm password"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                className="form--input"
+            />
+            
+            <div className="form--marketing">
+                <input
+                    name="marketing"
+                    id="okayToEmail"
+                    checked={formData.marketing}
+                    onChange={handleChange}
+                    type="checkbox"
+                    
+                />
+                <label htmlFor="okayToEmail">I want to join the newsletter</label>
+            </div>
+            <button 
+                className="form--submit"
+            >
+                Sign up
+            </button>
+        </form>
+    </div>
 )
 }
