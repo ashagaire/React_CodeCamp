@@ -24,6 +24,10 @@ body{
 
 section{
   padding: 20px;
+  display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .gray{
@@ -35,9 +39,12 @@ section{
 
 .hero{
 padding: 20px 30px;
-display: flex;
+
 flex-direction: column;
 align-self: center; 
+display: flex;
+
+  
 }
 
 .photo-grid{
@@ -66,10 +73,13 @@ align-self: center;
 }
 
 .cards-list {
+  padding: 20px;
   display: flex;
-  flex-wrap: nowrap;
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
-  overflow-x: auto;
+  overflow: auto;
+  justify-content: flex-start;
 }
 .card-photo{
   width: 100%;

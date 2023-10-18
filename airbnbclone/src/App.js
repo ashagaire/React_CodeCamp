@@ -19,11 +19,12 @@ function App() {
     <div className='everything'>
      <Navbar/>
      <Hero/>
-     <section className='cards-list'>
+     <div className='cards-list'>
 
         {Cards}
+        
 
-     </section>
+     </div>
      
     </div>
   );
