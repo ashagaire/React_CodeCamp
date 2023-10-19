@@ -8,12 +8,17 @@ function App() {
 
   const [dice, setDice] = useState(allNewDice())
   const [tenzies, setTenzies] =useState(false)
+  const [timesOfRoll, setTimesOfRoll] = useState(0)
+  const [winnerRoll, setWinnerRoll] = useState(100)
 
   useEffect(() => {
     const allDice = dice.every(dice => dice.isHeld)
     const firstValue = dice[0].value
     const allValue =dice.every(dice => dice.value === firstValue)
     if (allDice && allValue ){
+      if (timesOfRoll <= winnerRoll ){
+        setWinnerRoll(timesOfRoll)
+      }
       setTenzies(true)
       
     }
@@ -38,17 +43,22 @@ function App() {
   }
 
   function newGame(){
+    
+
+    setTimesOfRoll(0)
     setTenzies(false)
     setDice(allNewDice())
 
   }
-
+  
 
   function rollDice(){
+    
     setDice(oldDice => oldDice.map(die => {
       return die.isHeld ? die :
       generateNewDie()
     }))
+    setTimesOfRoll(timesOfRoll +1)
   }
 
   function holdDice(id){
@@ -68,15 +78,28 @@ function App() {
     <main>
       {tenzies && <Confetti/>}
       <h1 className="title">Tenzies</h1>
-            <p className="instructions">Roll until all dice are the same. <br></br> Click each die to freeze it at its current value between rolls.</p>
+      { tenzies && (
+          <p className='win-instructions'> Congratulations you won in {timesOfRoll}th roll.<br></br>
+          Fastest win is in {winnerRoll} rolls.</p>
+         )}  
+      { !tenzies && (
+           <p className="instructions">Roll until all dice are the same. <br></br>
+            Click each die to freeze it at its current value between rolls.</p>
+
+         )}
+           
       <div className="dice-container">
  
         {diceElements }
         
       </div>
+      <div>
       
-        <button className='roll-dice' onClick={tenzies ? newGame:  rollDice}> {tenzies?"New Game" : "Roll"}</button>
-     
+
+      </div>
+      
+            <button className='roll-dice' onClick={tenzies ? newGame:  rollDice}> {tenzies? "Play Again" : "Roll"} </button>
+
     </main>
     
   );
