@@ -39,18 +39,24 @@ section{
 
 .hero{
 padding: 20px 30px;
-
 flex-direction: column;
 align-self: center; 
 display: flex;
 
-  
 }
 
 .photo-grid{
   max-width: 500px;
   margin: 20px;
   align-self: center;
+}
+
+@media only screen and (max-width: 800px) {
+  .photo-grid {
+    max-width: 300px;
+    align-self: center;
+  }
+  
 }
 
 .hero-titel{
@@ -61,14 +67,17 @@ display: flex;
 .hero-text{
   margin: 20px;
   margin-top: 0;
+  font-size: 18px;
 }
 
 .card{
-  width: 155px;
-  font-size: 12px;
+  width: 300px;
+  font-size: 18px;
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
 }
 
@@ -79,7 +88,8 @@ display: flex;
   flex-wrap: wrap;
   gap: 20px;
   overflow: auto;
-  justify-content: flex-start;
+  justify-content: center;
+
 }
 .card-photo{
   width: 100%;
